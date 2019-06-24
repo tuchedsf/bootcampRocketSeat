@@ -1,0 +1,17 @@
+{
+  "name": "moduloNodeJs",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nunjucks": "^3.2.0"
+  },
+  "devDependencies": {
+    "eslint": "^6.0.0",
+    "nodemon": "^1.19.1"
+  },
+  "scripts": {
+    "start": "nodemon index.js"
+  }
+}
