@@ -6,3 +6,10 @@ module.exports = {
   'seeders-path' :  path.resolve('src', 'app', 'seeders'),
   'migrations-path' :  path.resolve('src', 'app', 'migrations'),
 }
+
+
+/**
+ * Inicialiar sequelize: npx sequelize init
+ * Criar migração: npx sequelize migration:create --name=create-users
+ * Executar migracao: npx sequelize db:migrate
+ */
