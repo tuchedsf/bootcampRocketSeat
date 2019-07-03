@@ -1,13 +1,14 @@
 module.exports = {
   dialect: 'mysql',
-  host: '127.0.0.1',
+  host: 'localhost',
+  port: 8889,
   username: 'root',
-  password: '',
-  database: 'gonodemodulo2',
+  password: 'root',
+  database: 'goBarber',
   operatorAliases: false,
   define: {
     timestamps: true,
     underscored: true,
-    underscoredAll: true
-  }
-}
+    underscoredAll: true,
+  },
+};
