@@ -16,27 +16,24 @@ class User extends Model {
         sequelize,
       }
     );
-  }
+    /**
+     * Hooks sao acoes que sao executadas todas as vezes antes de um determinado funcao
+     * ex: beforeSave -> executado sempre antes do create/save/update
+     */
+    this.addHook('beforeSave', async user => {
+      if (user.password) {
+        user.password_hash = await bcrypt.hash(user.password, 8);
+      }
+    });
 
-  // this.prototype.verifyPassword = function (password) {
-  //   return bcrypt.compare(password, this.password_hash);
-  // };
+    this.prototype.verifyPassword = function(password) {
+      console.log(
+        'TCL: User -> this.prototype.verifyPassword -> password',
+        password
+      );
+      return bcrypt.compare(password, this.password_hash);
+    };
+  }
 }
 
 export default User;
-//     {
-//       hooks: {
-//         beforeSave: async user => {
-//           if (user.password) {
-//             user.password_hash = await bcrypt.hash(user.password, 8);
-//           }
-//         },
-//       },
-//     }
-//   );
-
-//   User.prototype.verifyPassword = function(password) {
-//     return bcrypt.compare(password, this.password_hash);
-//   };
-//   return User;
-// };
