@@ -1,3 +1,4 @@
 node_modules
 */node_modules
 tmp/
+./goBarber/src/config/database.js
