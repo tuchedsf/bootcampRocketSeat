@@ -27,10 +27,6 @@ class User extends Model {
     });
 
     this.prototype.verifyPassword = function(password) {
-      console.log(
-        'TCL: User -> this.prototype.verifyPassword -> password',
-        password
-      );
       return bcrypt.compare(password, this.password_hash);
     };
   }

@@ -1,6 +1,7 @@
 import { Router } from 'express';
 
 import UserController from '../src/app/controllers/UserController';
+import SessionController from '../src/app/controllers/SessionController';
 
 const routes = new Router();
 
@@ -16,6 +17,6 @@ routes.get('/', UserController.index);
 // });
 //pode ficar assim
 routes.post('/users', UserController.store);
-routes.post('/signin', UserController.signin);
+routes.post('/signin', SessionController.signin);
 
 export default routes;

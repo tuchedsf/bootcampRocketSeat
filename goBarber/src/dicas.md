@@ -51,3 +51,16 @@ necessário para retirar "conflito" entre eslint airbnb e prettier
 > yarn add sequelize
 > yarn add sequelize-cli -
 > criar arquivo de configuração sequilizerc -
+
+criar migrações:
+npx sequelize migration:create --name=create-users
+
+executar migrações:
+npx sequelize db:migrate
+
+lembrando que todas as alterações no banco de dados devem ser feitas via migration.
+
+##### JWT
+
+forma de fazer autenticacao em apis rest com token.
+token app: goBarberNodeRocketSeatapp
