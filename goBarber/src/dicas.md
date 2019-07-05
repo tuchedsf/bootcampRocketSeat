@@ -64,3 +64,32 @@ lembrando que todas as alterações no banco de dados devem ser feitas via migra
 
 forma de fazer autenticacao em apis rest com token.
 token app: goBarberNodeRocketSeatapp
+
+##### promissify
+
+funcao que vem no node js por default dentro do pacote util, que transforma uma funcao com o padrao antigo de callback
+ex: jwt.verify(token, secret, (suceess, err) ={ ...})
+em uma funcao que ser executada via async/await ficando:
+await promisify(jwt.verify)(token, secret)
+nesse caso nao eh mais neecssário passar o callback vc chama promisify passa a função que por padrao utiliza callback, este metodo transforma a funcao em async/await
+e retorna uma função, que recebe os parametros que iriam ser passados juntamente com a funcao de callback.
+
+#### yup
+
+biblioteca de schema validation, para facilitar a validação dos campos no lado da api.
+Ex. se campo é string, tem q ser preenchido qual validação.
+
+o yup nao tem nenhum export default para importar, entao deve ser importado via
+import \* as Yup from 'yup';
+
+ex:
+const schema = Yup.object().shape({
+name: Yup.string().required(),
+})
+
+Yup valida o objeto se tiver dentro de uma requisição é o req, shape indica o corpo, onde é especificado o que deve ser validado.
+no caso acima o nome deve ser string e é obrigatorio. Caso tenha outros campos utilizar "," e ir incluindo os campos
+para validar:
+!(await schema.isValid(req.body) , retorna boolean se esta valido ou não.
+
+Mesmo q nao esteja criando nada no banco o objeto pode ser verificado.
