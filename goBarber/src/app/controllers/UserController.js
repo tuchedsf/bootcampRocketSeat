@@ -25,7 +25,32 @@ class UserController {
     }); //retorna usuario inteiro.
   }
 
-  async update() {}
+  async update(req, res) {
+    const { email, oldPassword } = req.body;
+    console.log('TCL: UserController -> update -> req.body', req.body);
+
+    const userExists = await User.findByPk(req.userId);
+
+    if (email && email !== userExists.email) {
+      const userExists = await User.findOne({ where: { email } });
+      if (userExists) {
+        res.status(400).json({ error: 'USUARIO JA CADASTRADO' });
+      }
+    }
+
+    if (oldPassword && !(await userExists.verifyPassword(oldPassword))) {
+      res.status(400).json({ error: 'OLD PASSWORD INVALIDO' });
+    }
+
+    const { id, name, provider } = await userExists.update(req.body);
+
+    return res.json({
+      id,
+      name,
+      email,
+      provider,
+    });
+  }
 
   async delete() {}
 
@@ -34,7 +59,7 @@ class UserController {
     if (!user) {
       res.status(400).json({ error: 'USUARIO NAO ENCONTRADO CADASTRADO' });
     }
-    if (!user.verifyPassword(req.body.password)) {
+    if (!(await user.verifyPassword(req.body.password))) {
       res.status(400).json({ error: 'PASSWORD INVALIDO' });
     }
 
